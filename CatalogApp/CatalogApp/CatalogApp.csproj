@@ -34,9 +34,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Api\DataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Api\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
