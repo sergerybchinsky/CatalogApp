@@ -9,20 +9,14 @@ using System.Diagnostics;
 
 namespace CatalogApp
 {
-	public interface IPlatformDependancy
-	{
-		ISQLitePlatform GetPlatform();
-	}
-
-
 	public class DataStorage
 	{
-		private readonly string _connectionString = "Catalog.db3";
+		private readonly string _dbName = "Catalog.db3";
 
 		private SQLiteAsyncConnection GetConnection()
 		{
 			var platform = SimpleIoc.Default.GetInstance<IPlatformDependancy>();
-			var connectionString = new SQLiteConnectionString(_connectionString, false);
+			var connectionString = new SQLiteConnectionString(_dbName, false);
 			var connectionWithLock = new SQLiteConnectionWithLock(platform.GetPlatform(), connectionString);
 			var conn = new SQLiteAsyncConnection(() => connectionWithLock);
 
@@ -37,11 +31,18 @@ namespace CatalogApp
 
 		public async Task UpdateDB(Task<Catalog[]> catalogT)
 		{
-			var catalog = await catalogT;
-			await GetConnection().InsertOrReplaceAllAsync(catalog).ContinueWith((arg) =>
+			try
 			{
-				Debug.WriteLine("DB updated;");
-			});
+				var catalog = await catalogT;
+				await GetConnection().InsertOrReplaceAllAsync(catalog).ContinueWith((arg) =>
+				{
+					Debug.WriteLine("DB updated!");
+				});
+			} 
+			catch (SQLiteException ex) 
+			{
+				Debug.WriteLine(ex.Message);
+			}
 		}
 
 		private bool CreateTables(SQLiteAsyncConnection connection)
