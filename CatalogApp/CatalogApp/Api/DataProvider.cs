@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CatalogApp
 {
@@ -18,8 +20,15 @@ namespace CatalogApp
 			get { return _instance; }
 		}
 
+		public async Task<Catalog[]> GetCatalogFromSerive()
+		{
+			var httpClient = new HttpClient();
+			var responseBodyAsText = await httpClient.GetStringAsync(_baseUrl);
+			var result = GetCatalogFromJson(responseBodyAsText);
+			return result;
+		}
 
-
+		#region Get data with callback method
 		public void GetData()
 		{
 			var request = WebRequest.Create(_baseUrl);
@@ -52,6 +61,7 @@ namespace CatalogApp
 				return (Catalog[])serializer.ReadObject(stream);
 			}
 		}
+		#endregion
 	}
 }
 
