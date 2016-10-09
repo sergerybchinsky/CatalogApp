@@ -1,5 +1,8 @@
 ﻿using Foundation;
 using UIKit;
+using CatalogApp;
+using System;
+using SQLite.Net.Interop;
 
 namespace CatalogApp.iOS
 {
@@ -21,6 +24,7 @@ namespace CatalogApp.iOS
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
 
+			GalaSoft.MvvmLight.Ioc.SimpleIoc.Default.Register<IPlatformDependancy, PlatformDependency>();
 			return true;
 		}
 
