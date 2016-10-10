@@ -35,11 +35,15 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Api\DataProvider.cs" />
     <Compile Include="Api\DataStorage.cs" />
-    <Compile Include="Api\IPlatformDependancy.cs" />
+    <Compile Include="Api\IPlatformDependency.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="ViewModels\RubricViewModel.cs" />
+    <Compile Include="ViewModels\SubjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Api\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

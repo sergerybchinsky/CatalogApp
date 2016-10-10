@@ -1,21 +1,26 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Interop;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using MvvmCross.Platform;
 
 namespace CatalogApp
 {
 	public class DataStorage
 	{
 		private readonly string _dbName = "Catalog.db3";
+		private IPlatformDependency _platformDependency;
+
+		public DataStorage(IPlatformDependency platformDependency)
+		{
+			_platformDependency = platformDependency;
+		}
 
 		private SQLiteAsyncConnection GetConnection()
 		{
-			var platform = SimpleIoc.Default.GetInstance<IPlatformDependancy>();
+			var platform = Mvx.Resolve<IPlatformDependency>();
 			var connectionString = new SQLiteConnectionString(_dbName, false);
 			var connectionWithLock = new SQLiteConnectionWithLock(platform.GetPlatform(), connectionString);
 			var conn = new SQLiteAsyncConnection(() => connectionWithLock);
