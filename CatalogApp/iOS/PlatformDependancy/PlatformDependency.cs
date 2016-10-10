@@ -7,7 +7,7 @@ using SQLite.Net.Interop;
 namespace CatalogApp.iOS
 {
 
-	class PlatformDependency : IPlatformDependancy
+	class PlatformDependency : IPlatformDependency
 	{
 		public ISQLitePlatform GetPlatform()
 		{
