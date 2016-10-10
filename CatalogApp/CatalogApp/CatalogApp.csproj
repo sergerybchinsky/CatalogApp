@@ -31,14 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Catalog.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Api\DataProvider.cs" />
-    <Compile Include="Api\DataStorage.cs" />
+    <Compile Include="Api\DataService.cs" />
     <Compile Include="Api\IPlatformDependency.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="ViewModels\RubricViewModel.cs" />
+    <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
+    <Compile Include="Api\IDataService.cs" />
+    <Compile Include="ViewModels\LoadDataViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

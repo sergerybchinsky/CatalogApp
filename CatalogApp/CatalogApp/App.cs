@@ -11,8 +11,7 @@ namespace CatalogApp
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
-			RegisterAppStart<ViewModels.RubricViewModel>();
+			RegisterAppStart<ViewModels.LoadDataViewModel>();
         }
     }
 

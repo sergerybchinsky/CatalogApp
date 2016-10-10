@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 namespace CatalogApp
 {
 	[DataContract]
-	public class Catalog
+	public class Category
 	{
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
