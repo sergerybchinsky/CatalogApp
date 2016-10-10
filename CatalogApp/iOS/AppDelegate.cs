@@ -25,7 +25,6 @@ namespace CatalogApp.iOS
 			startup.Start();
 
 			Window.MakeKeyAndVisible();
-
 			return true;
 		}
 	}
