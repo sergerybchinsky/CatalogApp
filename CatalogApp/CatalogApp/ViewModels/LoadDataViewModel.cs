@@ -34,7 +34,6 @@ namespace CatalogApp.ViewModels
 				if (_showCategoriesCommand == null)
 					_showCategoriesCommand = new MvxCommand(() =>
 					{
-						DataProvider.SharedInstance.DownloadedSuccesDelegate -= DownloadedSuccesDelegateHandler;
 						ShowViewModel<CategoriesViewModel>();                 
 					});
 				return _showCategoriesCommand;
@@ -48,16 +47,17 @@ namespace CatalogApp.ViewModels
 
 			IsBusy = true;
 			BusyText = "Catalog is dowloading";
+			await _dataService.FirstInit();
 			DataProvider.SharedInstance.DownloadedSuccesDelegate += DownloadedSuccesDelegateHandler;
 			DataProvider.SharedInstance.GetData();
 		}
 
 		protected async void DownloadedSuccesDelegateHandler(CatalogApp.Category[] categories)
 		{
+			DataProvider.SharedInstance.DownloadedSuccesDelegate -= DownloadedSuccesDelegateHandler;
 			BusyText = "Catalog downloaded \nUpdating database";
 			Debug.WriteLine($"[LoadDataViewModel.DownloadedSuccesDelegateHandler] : Updating database!");
 
-			await _dataService.FirstInit();
 			await _dataService.UpdateDB(categories).ContinueWith(
 				(obj) =>
 				{

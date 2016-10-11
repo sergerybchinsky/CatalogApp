@@ -1,14 +1,17 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 
 namespace CatalogApp.ViewModels
 {
-	public class CategoriesViewModel : BaseViewModel
+	public class CategoriesViewModel : BaseViewModel, IDataServiceDelegate
 	{
 		public CategoriesViewModel(IPlatformDependency platformDependency, IDataService dataService) : base()
 		{
 			_platformDependency = platformDependency;
 			_dataService = dataService;
+			DataService.Delegate = this;
 		}
 
 		private ObservableCollection<Category> _categories;
@@ -54,9 +57,19 @@ namespace CatalogApp.ViewModels
 			}
 		}
 
+		protected override void ReloadFromBundle(IMvxBundle state)
+		{
+			base.ReloadFromBundle(state);
+		}
+
 		public async override void Start()
 		{
 			base.Start();
+			Categories = new ObservableCollection<Category>(await _dataService.GetCategories());
+		}
+
+		public async Task DataBaseUdpated()
+		{
 			Categories = new ObservableCollection<Category>(await _dataService.GetCategories());
 		}
 	}
