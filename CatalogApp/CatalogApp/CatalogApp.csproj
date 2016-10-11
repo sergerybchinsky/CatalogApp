@@ -38,10 +38,11 @@
     <Compile Include="Api\IPlatformDependency.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
-    <Compile Include="ViewModels\SubjectViewModel.cs" />
+    <Compile Include="ViewModels\SubjectsViewModel.cs" />
     <Compile Include="Api\IDataService.cs" />
     <Compile Include="ViewModels\LoadDataViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\SubjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

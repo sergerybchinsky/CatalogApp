@@ -14,7 +14,7 @@ namespace CatalogApp.ViewModels
 			_dataService = dataService;
 		}
 
-		ObservableCollection<Category> _categories;
+		private ObservableCollection<Category> _categories;
 		public ObservableCollection<Category> Categories
 		{
 			get { return _categories; }
@@ -32,11 +32,13 @@ namespace CatalogApp.ViewModels
 			get
 			{
 				if (_showSubjectCommand == null)
-					_showSubjectCommand = new MvxCommand(() =>
+					_showSubjectCommand = new MvxCommand<Category>((category) =>
 					{
 						var bundle = new MvxBundle();
-						ShowViewModel<SubjectViewModel>(bundle);
-					});
+						bundle.Data.Add("categoryID", category.ID.ToString());
+						bundle.Data.Add("categoryName", category.Title);
+						ShowViewModel<SubjectsViewModel>(bundle);
+				});
 				return _showSubjectCommand;
 			}
 		}
@@ -44,6 +46,7 @@ namespace CatalogApp.ViewModels
 		public async override void Start()
 		{
 			base.Start();
+			Categories = new ObservableCollection<Category>(await _dataService.GetCategories());
 		}
 	}
 }
