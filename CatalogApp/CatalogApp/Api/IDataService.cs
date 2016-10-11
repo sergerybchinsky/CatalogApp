@@ -12,5 +12,7 @@ namespace CatalogApp
 		Task FirstInit();
 		Task<List<Category>> GetCategories();
 		IDataServiceDelegate Delegate { get; set; }
+		Task<List<Subject>> GetSubjectsByCategoryId(int categoryId);
+		Task<Subject> GetSubjectById(int subjectId);
 	}
 }

@@ -1,9 +1,9 @@
 ﻿using SQLite.Net;
-using SQLite.Net.Async;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System;
+using SQLite.Net.Async;
+using SQLiteNetExtensionsAsync.Extensions;
 
 namespace CatalogApp
 {
@@ -64,17 +64,30 @@ namespace CatalogApp
 			return await table.ToListAsync();
 		}
 
+		public async Task<List<Subject>> GetSubjectsByCategoryId(int categoryId)
+		{
+			var connection = GetConnection();
+			var table = connection.Table<Subject>().Where(x => x.CatalogID == categoryId);
+			return await table.ToListAsync();
+		}
+
+		public async Task<Subject> GetSubjectById(int subjectId)
+		{
+			var connection = GetConnection();
+			var table = connection.Table<Subject>().Where(x => x.ID == subjectId);
+			return await table.FirstOrDefaultAsync();
+		}
+
 		public async Task UpdateDB(Category[] categories)
 		{
 			try
 			{
-				await GetConnection().InsertOrReplaceAllAsync(categories).ContinueWith(async (arg) =>
+				await WriteOperations.InsertAllWithChildrenAsync(GetConnection(), categories).ContinueWith(async (arg) =>
 				{
 					Debug.WriteLine("[DataStorage.UpdateDB]: DB updated!");
-
 					await Delegate.DataBaseUdpated();
 				});
-			} 
+			}
 			catch (SQLiteException ex) 
 			{
 				Debug.WriteLine(ex.Message);
