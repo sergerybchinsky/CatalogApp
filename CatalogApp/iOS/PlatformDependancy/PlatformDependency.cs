@@ -3,6 +3,7 @@ using UIKit;
 using CatalogApp;
 using System;
 using SQLite.Net.Interop;
+using System.IO;
 
 namespace CatalogApp.iOS
 {
@@ -12,6 +13,11 @@ namespace CatalogApp.iOS
 		public ISQLitePlatform GetPlatform()
 		{
 			return new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+		}
+
+		public string GetDataBasePath()
+		{
+			return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 		}
 	}
 }
