@@ -161,9 +161,10 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Views\CategoriesView.cs" />
-    <Compile Include="Views\SubjectView.cs" />
+    <Compile Include="Views\SubjectsView.cs" />
     <Compile Include="Views\LoadDataView.cs" />
     <Compile Include="Views\BusyViewModelToActivitryValueConverter.cs" />
+    <Compile Include="Views\SubjectView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
