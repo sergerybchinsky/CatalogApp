@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using CatalogApp.Helpers;
 
 namespace CatalogApp.ViewModels
 {
@@ -35,7 +36,7 @@ namespace CatalogApp.ViewModels
 					_showCategoriesCommand = new MvxCommand(() =>
 					{
 						DataProvider.SharedInstance.DownloadedSuccesDelegate -= DownloadedSuccesDelegateHandler;
-						ShowViewModel<CategoriesViewModel>();
+						ShowViewModel<CategoriesViewModel>();                 
 					});
 				return _showCategoriesCommand;
 			}
@@ -44,23 +45,26 @@ namespace CatalogApp.ViewModels
 		public async override void Start()
 		{
 			base.Start();
+			Title = "Welcome";;
+
 			IsBusy = true;
 			BusyText = "Catalog is dowloading";
-			await _dataService.FirstInit();
 			DataProvider.SharedInstance.DownloadedSuccesDelegate += DownloadedSuccesDelegateHandler;
 			DataProvider.SharedInstance.GetData();
 		}
 
-		async void DownloadedSuccesDelegateHandler(CatalogApp.Category[] catalog)
+		protected async void DownloadedSuccesDelegateHandler(CatalogApp.Category[] categories)
 		{
 			BusyText = "Catalog downloaded \nUpdating database";
 			Debug.WriteLine($"[LoadDataViewModel.DownloadedSuccesDelegateHandler] : Updating database!");
 
-			await _dataService.UpdateDB(catalog).ContinueWith(
+			await _dataService.FirstInit();
+			await _dataService.UpdateDB(categories).ContinueWith(
 				(obj) =>
 				{
 					IsBusy = false;
 					BusyText = "Catalog downloaded!";
+					Settings.FirstStartApplication = false;
 					Debug.WriteLine($"[LoadDataViewModel.DownloadedSuccesDelegateHandler] : Database udpated!");
 				});
 		}

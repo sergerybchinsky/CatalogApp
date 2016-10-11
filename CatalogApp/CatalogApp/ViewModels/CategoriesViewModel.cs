@@ -43,6 +43,20 @@ namespace CatalogApp.ViewModels
 			}
 		}
 
+		private IMvxCommand _showLoadDataCommand;
+		public IMvxCommand ShowLoadDataCommand
+		{
+			get
+			{
+				if (_showLoadDataCommand == null)
+					_showLoadDataCommand = new MvxCommand(() =>
+					{
+						ShowViewModel<ReloadViewModel>();
+					});
+				return _showLoadDataCommand;
+			}
+		}
+
 		public async override void Start()
 		{
 			base.Start();
