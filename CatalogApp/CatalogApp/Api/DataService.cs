@@ -18,8 +18,8 @@ namespace CatalogApp
 		private string _dbPath;
 		private IPlatformDependency _platformDependency;
 
-		public IDataServiceDelegate _delegate;
-		public IDataServiceDelegate Delegate
+		static public IDataServiceDelegate _delegate;
+		static public IDataServiceDelegate Delegate
 		{
 			get { return _delegate; }
 			set { _delegate = value;}
@@ -85,7 +85,12 @@ namespace CatalogApp
 		{
 			try
 			{
-				await WriteOperations.InsertAllWithChildrenAsync(GetConnection(), categories).ContinueWith(async (arg) =>
+				//because Categories from json haven't any id = haven't primary key. 
+				//So i should did it (that duplicates do not appear).
+				await GetConnection().DeleteAllAsync<Category>();
+				await GetConnection().DeleteAllAsync<Subject>();
+
+				await WriteOperations.InsertOrReplaceAllWithChildrenAsync(GetConnection(), categories).ContinueWith(async (arg) =>
 				{
 					Debug.WriteLine("[DataStorage.UpdateDB]: DB updated!");
 					await Delegate.DataBaseUdpated();
