@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
@@ -12,13 +11,13 @@ namespace CatalogApp
 		[DataMember(Name = "id")]
 		public int ID { get; set; }
 
-		[ForeignKey(typeof(Category))]     // Specify the foreign key
-		public int CatalogID { get; set; }
+		[ForeignKey(typeof(Category))]
+		public int CategoryID { get; set; }
 
 		[DataMember(Name = "title")]
 		public string Title { get; set; }
 
 		[ManyToOne]
-		public Category Catalog { get; set; }
+		public Category Categories { get; set; }
 	}
 }

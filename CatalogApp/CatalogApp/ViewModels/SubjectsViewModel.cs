@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using MvvmCross.Core.ViewModels;
 
@@ -60,6 +59,5 @@ namespace CatalogApp.ViewModels
 			CategoryName = parameters.Data["categoryName"];
 			Subjects = new ObservableCollection<Subject>(await _dataService.GetSubjectsByCategoryId(categoryId));
 		}
-
 	}
 }

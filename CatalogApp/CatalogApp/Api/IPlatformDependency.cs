@@ -1,10 +1,4 @@
-using System;
-
-using SQLite.Net;
-using SQLite.Net.Async;
 using SQLite.Net.Interop;
-using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace CatalogApp
 {
@@ -12,6 +6,5 @@ namespace CatalogApp
 	{
 		ISQLitePlatform GetPlatform();
 		string GetDataBasePath();
-
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 
@@ -13,7 +12,7 @@ namespace CatalogApp
 		[DataMember(Name="title")]
 		public string Title { get; set; }
 
-		[OneToMany(CascadeOperations = CascadeOperation.All)]      // One to many relationship with Valuation
+		[OneToMany(CascadeOperations = CascadeOperation.All)]
 		[DataMember(Name = "subs")]
 		public Subject[] Subjects { get; set; }
 	}

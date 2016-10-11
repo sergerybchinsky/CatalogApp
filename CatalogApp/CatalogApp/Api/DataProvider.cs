@@ -54,10 +54,10 @@ namespace CatalogApp
 			using (var streamRead = new StreamReader(streamResponse))
 			{
 				var responseString = streamRead.ReadToEnd();
-				var catalog = GetCategoriesFromJson(responseString);
+				var categories = GetCategoriesFromJson(responseString);
 				Debug.WriteLine($"[DataProvider.GetRequestStreamCallBack] : Catalod downloaded!");
 				if (DownloadedSuccesDelegate != null)
-					DownloadedSuccesDelegate(catalog);
+					DownloadedSuccesDelegate(categories);
 			}
 		}
 
@@ -73,4 +73,3 @@ namespace CatalogApp
 		#endregion
 	}
 }
-

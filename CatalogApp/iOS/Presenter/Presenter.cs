@@ -1,11 +1,5 @@
-using Foundation;
 using UIKit;
-using CatalogApp;
-using System;
-using SQLite.Net.Interop;
-using MvvmCross.Platform;
 using MvvmCross.iOS.Platform;
-using MvvmCross.Core.ViewModels;
 using CatalogApp.iOS.Views;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.iOS.Views;
@@ -34,10 +28,13 @@ namespace CatalogApp.iOS
 
 			base.Show(view);
 		}
+
 		private bool ShowMainView(IMvxIosView view)
 		{
 			if (view is CategoriesView)
 			{
+				if (_mainController == null)
+					base.Show(view);
 				_mainController.SetViewControllers(new UIViewController[] { view as UIViewController }, true);
 				return true;
 			}
@@ -51,5 +48,4 @@ namespace CatalogApp.iOS
 			return _mainController;
 		}
 	}
-
 }

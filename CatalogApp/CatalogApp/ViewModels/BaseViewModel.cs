@@ -1,8 +1,4 @@
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 
 namespace CatalogApp.ViewModels
 {
@@ -33,5 +29,4 @@ namespace CatalogApp.ViewModels
 			}
 		}
 	}
-	
 }

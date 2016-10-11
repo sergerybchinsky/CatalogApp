@@ -1,8 +1,5 @@
 ﻿using Foundation;
 using UIKit;
-using CatalogApp;
-using System;
-using SQLite.Net.Interop;
 using MvvmCross.Platform;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Core.ViewModels;
@@ -29,5 +26,3 @@ namespace CatalogApp.iOS
 		}
 	}
 }
-
-

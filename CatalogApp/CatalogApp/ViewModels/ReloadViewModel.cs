@@ -1,10 +1,4 @@
-using System;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using CatalogApp.Helpers;
 
 namespace CatalogApp.ViewModels
 {
@@ -37,5 +31,4 @@ namespace CatalogApp.ViewModels
 			IsBusy = false;
 		}
 	}
-	
 }

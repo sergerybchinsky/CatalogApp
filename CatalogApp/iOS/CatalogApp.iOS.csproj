@@ -182,6 +182,7 @@
     <Compile Include="Views\ReloadView.cs" />
     <Compile Include="Views\BaseLoadDataView.cs" />
     <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Views\TableViewDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

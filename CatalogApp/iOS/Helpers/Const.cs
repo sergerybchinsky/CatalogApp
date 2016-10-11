@@ -1,5 +1,4 @@
-﻿using System;
-namespace CatalogApp.iOS
+﻿namespace CatalogApp.iOS
 {
 	public static class Const
 	{

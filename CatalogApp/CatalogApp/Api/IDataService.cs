@@ -1,7 +1,4 @@
-using SQLite.Net;
-using SQLite.Net.Async;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Collections.Generic;
 
 namespace CatalogApp

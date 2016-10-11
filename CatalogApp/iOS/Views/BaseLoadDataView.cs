@@ -1,10 +1,5 @@
-using System;
-using CatalogApp.ViewModels;
 using CoreGraphics;
-using Foundation;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
-using MvvmCross.Platform.Converters;
 using UIKit;
 
 namespace CatalogApp.iOS.Views
@@ -36,5 +31,4 @@ namespace CatalogApp.iOS.Views
 			this.View.AddSubview(_processTitle);
 		}
 	}
-	
 }

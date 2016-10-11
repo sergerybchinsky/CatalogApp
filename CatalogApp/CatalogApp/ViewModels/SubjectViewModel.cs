@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 
 namespace CatalogApp.ViewModels
 {

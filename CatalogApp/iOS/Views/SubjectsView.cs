@@ -1,5 +1,4 @@
-﻿using System;
-using CatalogApp.iOS.Views;
+﻿using CatalogApp.iOS.Views;
 using CatalogApp.ViewModels;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
