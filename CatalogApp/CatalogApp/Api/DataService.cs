@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using SQLite.Net.Async;
 using SQLiteNetExtensionsAsync.Extensions;
+using System.IO;
 
 namespace CatalogApp
 {
@@ -14,6 +15,7 @@ namespace CatalogApp
 	public class DataService : IDataService
 	{
 		private readonly string _dbName = "Catalog.db3";
+		private string _dbPath;
 		private IPlatformDependency _platformDependency;
 
 		public IDataServiceDelegate _delegate;
@@ -26,11 +28,12 @@ namespace CatalogApp
 		public DataService(IPlatformDependency platformDependency)
 		{
 			_platformDependency = platformDependency;
+			_dbPath = Path.Combine(_platformDependency.GetDataBasePath(), _dbName);
 		}
 
 		private SQLiteAsyncConnection GetConnection()
 		{
-			var connectionString = new SQLiteConnectionString(_dbName, false);
+			var connectionString = new SQLiteConnectionString(_dbPath, false);
 			var connectionWithLock = new SQLiteConnectionWithLock(_platformDependency.GetPlatform(), connectionString);
 			var conn = new SQLiteAsyncConnection(() => connectionWithLock);
 
@@ -67,7 +70,7 @@ namespace CatalogApp
 		public async Task<List<Subject>> GetSubjectsByCategoryId(int categoryId)
 		{
 			var connection = GetConnection();
-			var table = connection.Table<Subject>().Where(x => x.CatalogID == categoryId);
+			var table = connection.Table<Subject>().Where(x => x.CategoryID == categoryId);
 			return await table.ToListAsync();
 		}
 
