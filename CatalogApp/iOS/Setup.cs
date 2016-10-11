@@ -35,5 +35,10 @@ namespace CatalogApp.iOS
 		{
 			return new DebugTrace();
 		}
+
+		protected override IMvxIosViewPresenter CreatePresenter()
+		{
+			return new Presenter(ApplicationDelegate, Window);
+		}
 	}
 }
