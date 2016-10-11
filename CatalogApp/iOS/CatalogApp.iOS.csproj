@@ -155,6 +155,7 @@
     <Folder Include="PlatformDependancy\" />
     <Folder Include="Views\" />
     <Folder Include="Assets.xcassets\WebIconImage.imageset\" />
+    <Folder Include="Presenter\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -177,10 +178,10 @@
     <Compile Include="Views\BusyViewModelToActivitryValueConverter.cs" />
     <Compile Include="Views\SubjectView.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Presenter.cs" />
     <Compile Include="Helpers\Const.cs" />
     <Compile Include="Views\ReloadView.cs" />
     <Compile Include="Views\BaseLoadDataView.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
